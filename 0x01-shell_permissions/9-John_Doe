@@ -1,0 +1,2 @@
+echo -e #!/bin/bash
+chmod 753 hello

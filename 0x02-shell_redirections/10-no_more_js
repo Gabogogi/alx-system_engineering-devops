@@ -1,1 +1,2 @@
-This file prints Hello World README.md
+#!/bin/bash
+find -name "*.js" -type f -delete

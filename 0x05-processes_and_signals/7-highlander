@@ -4,7 +4,7 @@
 # I am invincible!!! when receiving a SIGTERM signal
 
 while true
-do 
+do
 	echo "To infinity and beyond"
 	sleep 2
 	trap 'echo "I am invincible!!!"' SIGTERM

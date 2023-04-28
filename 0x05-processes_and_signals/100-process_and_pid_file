@@ -1,24 +1,25 @@
 #!/usr/bin/env bash
-# Does the following:
-#   Create a file /var/run/myscript.pid containing the script PID.
-#   Displays "To infinity and beyond" indefinitely
-#   Displays "I hate the kill command" upon receiving a SIGTERM
-#   Displays "Y U no love me?!" upon receiving a SIGINT
-#   Deletes the file /var/run/mycript.pid and terminates upon
-#+  receiving a SIGQUIT or SIGTERM.
+# Using SIGNALS and management with processes.
 
-terminator() {
-  rm /var/run/myscript.pid
-  exit
+FILE="/var/run/holbertonscript.pid"
+
+function clean_up()
+{
+    rm -rf $FILE
+    if $1;
+    then
+	echo "I hate the kill command"
+    fi
+    exit
 }
 
-echo "$$" > /var/run/myscript.pid
+echo "$$" > $FILE
 
-while true
+trap clean_up "true" SIGTERM
+trap clean_up "false" SIGQUIT
+trap 'echo "Y U no love me?!"' SIGINT
+
+while true;
 do
-  echo "To infinity and beyond"
-  sleep 2
-  trap 'echo "Y U no love me?!"' SIGINT
-  trap 'echo "I hate the kill command" && terminator' SIGTERM
-  trap 'terminator' SIGQUIT
+    echo "To infinity and beyond"
 done

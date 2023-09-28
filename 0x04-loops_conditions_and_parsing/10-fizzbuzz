@@ -4,8 +4,6 @@
 #prints buzz when number is a multiple of 5
 #otherwise dispalys number
 
-
-
 for (( num= 1;  num <= 100; num=num+1 )); do
 	if (( ((num % 3)) == 0 && ((num % 5)) == 0 )); then
 		echo fizzbuzz

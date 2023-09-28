@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+#prints Best School 10x using until
+a=0
+until [ ! $a -lt 10 ]
+do
+	echo Best School
+	a=$((a + 1))
+done

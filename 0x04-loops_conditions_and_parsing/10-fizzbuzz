@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+#displays fizzbuzz when number is between 3 and 5
+#displays fizz when the no is multiple of 3
+#prints buzz when number is a multiple of 5
+#otherwise dispalys number
+
+
+
+for (( num= 1;  num <= 100; num=num+1 )); do
+	if (( ((num % 3)) == 0 && ((num % 5)) == 0 )); then
+		echo fizzbuzz
+	elif (( ((num % 5)) == 0 )); then
+		echo fizz
+	elif (( ((num % 3)) == 0 )); then
+		echo buzz
+	else
+		echo $num
+fi
+done

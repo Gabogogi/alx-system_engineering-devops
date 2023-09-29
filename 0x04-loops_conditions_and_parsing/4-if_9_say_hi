@@ -5,7 +5,7 @@ num=0
 while [ $num -lt 10 ]; do
 	echo Best School
 	if (( num == 8 )); then
-	echo hi
+	echo Hi
 fi
 num=$((num + 1))
 done

@@ -2,5 +2,5 @@
 #lists out files in directory
 
 for file in *; do
-	echo $file | cut -d '-' -f 2
+	echo "$file" | cut -d '-' -f 2
 done

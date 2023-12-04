@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# Install your load balancer
+sudo apt-get -y update
+sudo apt-get -y install haproxy
+
+
+echo "
+frontend bencity-frontend
+    bind *:80
+    mode http
+    default_backend bencity-backend
+
+backend bencity-backend
+    balance roundrobin
+    server 206300-web-01 54.236.46.59 check
+    server 206300-web-02 52.3.252.66 check
+" >> /etc/haproxy/haproxy.cfg
+
+sudo service haproxy restart

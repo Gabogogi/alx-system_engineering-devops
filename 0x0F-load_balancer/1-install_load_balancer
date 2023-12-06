@@ -1,19 +1,40 @@
 #!/usr/bin/env bash
-# Install your load balancer
-sudo apt-get -y update
-sudo apt-get -y install haproxy
+#Installs and configures HAproxy in a load balancer server
 
+apt-get install -y software-properties-common
+add-apt-repository -y ppa:vbernat/haproxy-1.8
+apt-get update
+apt-get install -y haproxy=1.8.\*
 
-echo "
-frontend bencity-frontend
-    bind *:80
+echo "ENABLED=1" >> /etc/default/haproxy
+mv /etc/haproxy/haproxy.cfg{,.original}
+touch /etc/haproxy/haproxy.cfg
+
+printf %s "global
+    log 127.0.0.1 local0 notice
+    maxconn 2000
+    user haproxy
+    group haproxy
+defaults
+    log     global
+    mode    http
+    option  httplog
+    option  dontlognull
+    retries 3
+    option redispatch
+    timeout connect  5000
+    timeout client  10000
+    timeout server  10000
+listen bencity
+    bind 0.0.0.0:80
     mode http
-    default_backend bencity-backend
-
-backend bencity-backend
+    stats enable
+    stats uri /haproxy?stats
     balance roundrobin
-    server 206300-web-01 54.236.46.59 check
-    server 206300-web-02 52.3.252.66 check
+    option httpclose
+    option forwardfor
+    server 59637-web-01 54.160.85.72:80 check
+    server 59637-web-02 35.175.132.106:80 check
 " >> /etc/haproxy/haproxy.cfg
 
-sudo service haproxy restart
+service haproxy start

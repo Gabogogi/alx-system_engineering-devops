@@ -1,8 +1,5 @@
 #!/usr/bin/python3
-'''
-uses a REST API to return info on
-an employees task completion, takes id from CLI
-'''
+#uses a REST API to return info on
 
 import requests
 import sys

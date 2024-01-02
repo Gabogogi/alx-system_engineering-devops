@@ -29,7 +29,7 @@ def get_user_data():
                 "username": user.get("username")
             }
             data_to_export[user_id].append(task_info)
-        return data_to_export
+    return data_to_export
 
 
 if __name__ == "__main__":

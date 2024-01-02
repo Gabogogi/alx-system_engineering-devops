@@ -5,7 +5,7 @@ import requests
 import sys
 
 
-if __name__ == '__main__':
+if __name__ == '__main_':
     url = 'https://jsonplaceholder.typicode.com/'
     employee_id = sys.argv[1]
     user_response = requests.get(f"{url}users/{employee_id}")

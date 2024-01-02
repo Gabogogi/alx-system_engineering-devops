@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-#uses a REST API to return info on
+'''uses a REST API to return info on'''
 
 import requests
 import sys
@@ -18,7 +18,7 @@ if __name__ == '__main__':
         if todo.get("completed") is True:
             completed_tasks.append(todo.get("title"))
 
-    print(f"Employee {user.get('name')} is done with tasks
+    print(f"Employee {user.get('name')} is done with tasks \
           {len(completed_tasks)}/{len(todos)}")
 
     for complete in completed_tasks:

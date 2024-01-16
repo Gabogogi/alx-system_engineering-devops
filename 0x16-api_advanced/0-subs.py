@@ -3,7 +3,6 @@
 Obtain number of subscribers from a Reddit subreddit
 '''
 import requests
-import sys
 
 
 def number_of_subscribers(subreddit):

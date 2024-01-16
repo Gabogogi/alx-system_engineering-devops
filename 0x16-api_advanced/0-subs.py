@@ -2,11 +2,8 @@
 '''
 Obtain number of subscribers from a Reddit subreddit
 '''
-import sys
 import requests
-
-
-subreddit = sys.argv[1]
+import sys
 
 
 def number_of_subscribers(subreddit):
@@ -15,14 +12,10 @@ def number_of_subscribers(subreddit):
     headers = {'User-Agent': 'MyAPIReddit'}
 
     # end point for subreddit info
-    res = requests.get(f'https://oauth.reddit.com/r/{subreddit}/about.json',
-                       headers=headers)
+    url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
+    res = requests.get(url, headers=headers, allow_redirects=False)
 
-   if res.status_code != 200:
+    if res.status_code != 200:
         return 0
-    dic = res.json()
-    if 'data' not in dic:
-        return 0
-    if 'subscribers' not in dic.get('data'):
-        return 0
-    return res.json()['data']['subscribers']
+    sub_data = res.json().get('data')
+    return sub_data.get('subscribers')

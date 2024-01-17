@@ -22,14 +22,16 @@ def top_ten(subreddit):
                        allow_redirects=False)
 
     if res.status_code != 200:
-        return 0
-    """ sub_data = res.json().get('data')
-    return sub_data.get('subscribers') """
-
-    sub_data = res.json()
-    top_posts = sub_data['data']['children']
-    if len(top_posts) == 0:
-        print(None)
+        print('None')
     else:
-        for post in top_posts:
-            print(post['data']['title'])
+        sub_data = res.json()
+        top_posts = sub_data['data']['children']
+        if len(top_posts) == 0:
+            print(None)
+        else:
+            for post in top_posts:
+                print(post['data']['title'])
+
+
+top_ten('python')
+# print(top_ten('ben'))

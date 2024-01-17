@@ -8,11 +8,14 @@ def number_of_subscribers(subreddit):
     0 if the subreddit is not valid.
     '''
     headers = {'User-Agent': 'MyAPIReddit'}
-    url = f"https://www.reddit.com/r/{subreddit}/about.json"
-    res = requests.get(url, headers=headers, allow_redirects=False)
+    url = ("https://api.reddit.com/r/{}/about".format(subreddit))
+    response = requests.get(url, headers=headers, allow_redirects=False)
 
-    if res.status_code == 200:
-        sub_data = res.json().get('data', {})
-        return sub_data.get('subscribers', 0)
+    if response.status_code != 200:
+        return (0)
+    response = response.json()
+    if 'data' in response:
+        return (response.get('data').get('subscribers'))
+
     else:
-        return 0
+        return (0)
